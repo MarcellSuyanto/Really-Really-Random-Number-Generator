@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from query_scraping import get_leetcode
+from .query_scraping import get_leetcode
 
 
 def get_wiki():

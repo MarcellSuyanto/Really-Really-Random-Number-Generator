@@ -2,8 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import datetime
 
@@ -17,6 +15,7 @@ def get_stocks():
     )
     stocks_codes = ['AMZN','TSLA','AAPL','MSFT','GOOGL','NVDA']
     stocks = {}
+    total_prices = 0
     for stock_code in stocks_codes:
         url = f'https://finance.yahoo.com/quote/{stock_code}'
         driver.get(url)
@@ -24,10 +23,12 @@ def get_stocks():
             By.CSS_SELECTOR,
             f'[data-symbol="{stock_code}"][data-field="regularMarketPrice"]'
         ).text
-        stocks[stock_code] = regular_market_price       
+        regular_market_price = float(regular_market_price)
+        stocks[stock_code] = regular_market_price
+        total_prices += regular_market_price
     driver.quit()
     # close the browser and free up the resources
-    return stocks
+    return total_prices
 
 
 def get_espn():
@@ -44,7 +45,7 @@ def get_espn():
         '[class="ScoreCell__Score h4 clr-gray-01 fw-heavy tar ScoreCell_Score--scoreboard pl2"]'
     )
     scores = [i.text for i in scores if i.text]
+    scores = list(map(int, scores))
     driver.quit()
-    return scores
+    return sum(scores)
 
-print(get_espn())

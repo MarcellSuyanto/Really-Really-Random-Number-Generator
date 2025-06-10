@@ -1,8 +1,8 @@
-from bsoup_scraping import get_bbc, get_wiki, get_astro
+from Web_Scrapers.bsoup_scraping import *
 
-from query_scraping import get_leetcode
+from Web_Scrapers.query_scraping import *
 
-from selenium_scraping import get_stocks, get_espn
+from Web_Scrapers.selenium_scraping import *
 
 
 
@@ -14,16 +14,31 @@ functions = {
     'Daily Leetcode Problem Number': get_leetcode(),
     'Yahoo Finance Stocks Market Price': get_stocks(),
     'ESPN Soccer Scores': get_espn()
-
 }
-stocks = get_stocks()
-scores = get_espn()
 
-numbers = [get_wiki(), get_bbc(), get_astro(), get_leetcode()]
-print(numbers)
-avg = sum(numbers)/len(numbers)
+value_list = [value for value in functions.values()]
+print(value_list)
+
+avg = sum(value_list)/len(value_list)
 print(avg)
 
 
+
+"""
+1. Set up Readme File properly
+    Project description
+
+    Installation instructions
+
+    Usage examples
+
+    Contribution guidelines
+
+    Screenshots/GIFs (if applicable)
+2. License
+3. requirements.txt
+4. Description
+5. https://www.youtube.com/watch?v=eNDuqcrLTLs
+"""
 
 
