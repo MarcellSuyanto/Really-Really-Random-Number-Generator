@@ -1,2 +1,2 @@
 # Really-Really-Random-Number-Generator
-A program that generates a really random number
+![Thumbnail](images/RRRNG_thmbnail.png)
