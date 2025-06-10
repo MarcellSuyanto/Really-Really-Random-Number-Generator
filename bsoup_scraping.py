@@ -36,8 +36,7 @@ def get_astro():
     explanation = soup.get_text().replace("\n", "").replace(",","")
     explanation = explanation.split(' ')
     i = explanation.index("Explanation:")
-    j = explanation.index("Piece")
-    explanation = explanation[i:j]
+    explanation = explanation[i:]
 
     total = 0 
     for word in explanation:
@@ -51,31 +50,6 @@ def get_astro():
     return total
     
 
-
-def get_espn(): # in progress, do not use for now
-    week = 19
-    year = 2022
-
-    url = f"https://www.espn.com/nfl/scoreboard/_/week/{week}/year/{year}"
-    headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-    "Accept-Language": "en-US,en;q=0.9",
-    "Referer": "https://www.google.com/",
-    }
-
-    response = requests.get(url, headers=headers)
-    print(response)
-    soup = BeautifulSoup(response.content, 'html.parser')
-    print(soup.select('.ScoreboardScoreCell'))
-    all_data = []
-    for board in soup.select('.ScoreboardScoreCell'):
-        title = board.find_previous(class_='Card__Header__Title').text
-        teams = [t.text for t in board.select('.ScoreCell__TeamName')]
-        scores = [s.text for s in board.select('.ScoreCell__Score')] or ['-', '-']
-
-        all_data.append((week, title, teams[0], scores[0], teams[1], scores[1]))
-
-    print(all_data)
 
 
 
