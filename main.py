@@ -35,7 +35,7 @@ print(avg)
     Contribution guidelines
 
     Screenshots/GIFs (if applicable)
-2. License
+2. Contributing.md
 3. requirements.txt
 4. Description
 5. https://www.youtube.com/watch?v=eNDuqcrLTLs
